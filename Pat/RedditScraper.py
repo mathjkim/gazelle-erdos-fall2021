@@ -88,6 +88,7 @@ def check_iterator():
         if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode):
             deleted_post = True
             #No need to keep tracking deleted posts
+            print("Stopping updates for "+url_str+" since it's been deleted/removeed.")
             c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
             conn.commit()
 
