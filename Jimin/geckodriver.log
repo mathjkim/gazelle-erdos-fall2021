@@ -1,0 +1,244 @@
+1634580715884	geckodriver	INFO	Listening on 127.0.0.1:62117
+1634580716021	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "62118" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofilejvK7ZO"
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+DevTools listening on ws://localhost:62118/devtools/browser/318af7e7-8b22-6148-a6a3-65ac981ef428
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1634581274759	geckodriver	INFO	Listening on 127.0.0.1:49683
+1634581275281	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "49684" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiled3wtgM"
+1634581297148	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiled3wtgM/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:49684/devtools/browser/001f232a-e035-2941-a805-b54d8b82a23f
+1634581298528	Marionette	INFO	Listening on port 49691
+1634581298633	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+1634581317936	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+[Child 1293, MediaDecoderStateMachine #1] WARNING: 12ea58900 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:367
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+[ERROR osclientcerts_static] ThreadId(13) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+JavaScript warning: resource://devtools/client/shared/demangle.js, line 0: Successfully compiled asm.js code (total compilation time 44ms)
+1634581974267	geckodriver	INFO	Listening on 127.0.0.1:50060
+1634581974792	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50061" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofilekViZpJ"
+1634581975127	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofilekViZpJ/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:50061/devtools/browser/f334c4d3-d850-9d43-822f-0c5297d05eed
+1634581976351	Marionette	INFO	Listening on port 50068
+1634581976457	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+console.error: (new TypeError("parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:244:34
+emit@resource://devtools/shared/event-emitter.js:190:18
+emit@resource://devtools/shared/event-emitter.js:342:18
+getMutations@resource://devtools/client/fronts/walker.js:311:10
+
+[ERROR osclientcerts_static] ThreadId(12) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+1634582417545	geckodriver	INFO	Listening on 127.0.0.1:50311
+1634582417556	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50312" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiled9Fljw"
+1634582417920	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiled9Fljw/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:50312/devtools/browser/a2e8be37-33b0-6a48-b416-144733da001d
+1634582419211	Marionette	INFO	Listening on port 50317
+1634582419232	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+1634582449506	geckodriver	INFO	Listening on 127.0.0.1:50394
+1634582450029	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50395" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiletvyhQp"
+1634582450376	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofiletvyhQp/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:50395/devtools/browser/a58d10c3-2733-8d46-b89c-8b33e181d93c
+1634582451644	Marionette	INFO	Listening on port 50402
+1634582451708	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+[ERROR osclientcerts_static] ThreadId(11) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(9) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+1634583463293	geckodriver	INFO	Listening on 127.0.0.1:50773
+1634583463310	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50774" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileEGFMkF"
+1634583463648	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileEGFMkF/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:50774/devtools/browser/9f9d69bd-f7d4-7d4e-9210-a3143ac60248
+1634583464910	Marionette	INFO	Listening on port 50777
+1634583464974	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+1634583726796	geckodriver	INFO	Listening on 127.0.0.1:50949
+1634583726811	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "50950" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileLHznDs"
+1634583727155	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileLHznDs/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:50950/devtools/browser/9691ad36-126d-fe47-8d55-9490ec4a2823
+1634583728497	Marionette	INFO	Listening on port 50953
+1634583728601	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+[ERROR osclientcerts_static] ThreadId(10) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+[ERROR osclientcerts_static] ThreadId(13) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1634585631579	Marionette	INFO	Stopped listening on port 49691
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1634585633332	Marionette	INFO	Stopped listening on port 50068
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1634585634837	Marionette	INFO	Stopped listening on port 50317
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1634585636446	Marionette	INFO	Stopped listening on port 50402
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1634585637964	Marionette	INFO	Stopped listening on port 50777
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+[ERROR osclientcerts_static] ThreadId(26) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.error: (new TypeError("parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:244:34
+emit@resource://devtools/shared/event-emitter.js:190:18
+emit@resource://devtools/shared/event-emitter.js:342:18
+getMutations@resource://devtools/client/fronts/walker.js:311:10
+
+console.error: (new TypeError("container.node.targetFront is null", "resource://devtools/client/inspector/markup/markup.js", 2309))
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.error: (new TypeError("parent is null", "resource://devtools/client/inspector/shared/style-change-tracker.js", 67))
+TypeError: parent is null: canMutationImpactCurrentStyles@resource://devtools/client/inspector/shared/style-change-tracker.js:67:24
+onMutations@resource://devtools/client/inspector/shared/style-change-tracker.js:84:41
+_emit@resource://devtools/shared/event-emitter.js:244:34
+emit@resource://devtools/shared/event-emitter.js:190:18
+emit@resource://devtools/shared/event-emitter.js:342:18
+getMutations@resource://devtools/client/fronts/walker.js:311:10
+
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://twitter.com"
+console.error: (new TypeError("container.node.targetFront is null", "resource://devtools/client/inspector/markup/markup.js", 2309))
+1634588303429	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.js:238:19
+TimedPromise@chrome://remote/content/marionette/sync.js:223:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.js:431:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.js:179:31
+[ERROR osclientcerts_static] ThreadId(58) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(63) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(63) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+1634606927988	geckodriver	INFO	Listening on 127.0.0.1:52688
+1634606928002	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "52689" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofilegiz3A8"
+1634606928392	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofilegiz3A8/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:52689/devtools/browser/d21cc8a9-6724-5140-a59f-a4beb80818af
+1634606929677	Marionette	INFO	Listening on port 52692
+1634606929695	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+1634606953063	geckodriver	INFO	Listening on 127.0.0.1:52759
+1634606953592	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "52760" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileD2XtmW"
+1634606953959	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofileD2XtmW/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:52760/devtools/browser/4089aa1b-6b33-5944-9f9d-ba6901d5a818
+1634606955302	Marionette	INFO	Listening on port 52765
+1634606955383	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+1634606987583	geckodriver	INFO	Listening on 127.0.0.1:52835
+1634606987593	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "52836" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofile2toa0T"
+1634606987946	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofile2toa0T/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:52836/devtools/browser/f6e02786-576c-3c42-9109-fa33be5f179e
+1634606989262	Marionette	INFO	Listening on port 52839
+1634606989277	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+1634607008664	geckodriver	INFO	Listening on 127.0.0.1:52907
+1634607009189	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "52908" "-foreground" "-no-remote" "-profile" "/var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofile16YZ4Z"
+1634607009592	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/3d/35xvkgc91ng78ycw542mxjfc0000gn/T/rust_mozprofile16YZ4Z/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:52908/devtools/browser/8daa9078-c097-5f4e-a512-09f280e60bab
+1634607010952	Marionette	INFO	Listening on port 52913
+1634607010964	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://services-settings/Attachments.jsm, line 391: TypeError: / is not a valid URL.
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+1634607094931	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.js:238:19
+TimedPromise@chrome://remote/content/marionette/sync.js:223:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.js:431:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.js:179:31
+[ERROR osclientcerts_static] ThreadId(8) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(10) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(10) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+[ERROR osclientcerts_static] ThreadId(12) C_FindObjectsInit: CKR_ARGUMENTS_BAD: ExternalError at security/manager/ssl/osclientcerts/src/backend_macos.rs:921 (-25300)
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+[Child 6131, MediaDecoderStateMachine #1] WARNING: 143291700 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:367
+[Child 6131, MediaDecoderStateMachine #1] WARNING: 143eb9000 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:367
+1634608464052	Marionette	INFO	Stopped listening on port 52692
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1634608465499	Marionette	INFO	Stopped listening on port 52765
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1634608467232	Marionette	INFO	Stopped listening on port 52839
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1634608468728	Marionette	INFO	Stopped listening on port 52913
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1634608471738	Marionette	INFO	Stopped listening on port 50953
+JavaScript error: resource:///modules/Interactions.jsm, line 201: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
