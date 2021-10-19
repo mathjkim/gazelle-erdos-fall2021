@@ -83,9 +83,16 @@ def check_iterator():
         req = Request(url=url_str,headers=header)
         sourceCode = urlopen(req).read().decode()
         time.sleep(1)
+       
+        deleted_post = False
+        if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode):
+            deleted_post = True
+            #No need to keep tracking deleted posts
+            c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
+            conn.commit()
 
-        if not '<span class="promoted-tag">' in sourceCode and (not '?promoted=1' in url_str):
-            #this skips promoted posts
+        if (not '<span class="promoted-tag">' in sourceCode) and (not '?promoted=1' in url_str) and deleted_post==False:
+            #this skips promoted and deleted posts
             active_track = 'Yes'
             title = re.findall('property="og:title" content="(.*?)">',sourceCode)[0].replace("'","")
             comment_url = url_str
@@ -103,7 +110,7 @@ def check_iterator():
                 rising_val = rising_urls.index(comment_url)+1
             else:
                 rising_val = 99
-            
+           
             if 'Posted in r/wallstreetbets' in sourceCode:
                 username = re.findall('property="og:description" content="Posted in r/wallstreetbets by u/(.*?) ',sourceCode)[0]
             else:
@@ -133,7 +140,7 @@ def check_iterator():
             #print(val_str)
             c.execute("INSERT INTO new_posts VALUES ("+val_str+")")
             conn.commit()
-            
+           
             hours_old = 0
             val_str = str(stat_id)+","+str(post_id)+",'"+url_str+"',"+str(hours_old)+","
             val_str+= str(rising_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
@@ -148,9 +155,17 @@ def check_iterator():
         req = Request(url=url_str,headers=header)
         sourceCode = urlopen(req).read().decode()
         time.sleep(1)
+       
+        deleted_post = False
+        if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode):
+            deleted_post = True
+            #No need to keep tracking deleted posts
+            print("Stopping updates for "+url_str+"since it's been deleted/removeed.")
+            c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
+            conn.commit()
 
-        if (not '<span class="promoted-tag">' in sourceCode) and (not '?promoted=1' in url_str):
-            #this skips promoted posts
+        if (not '<span class="promoted-tag">' in sourceCode) and (not '?promoted=1' in url_str) and deleted_post==False:
+            #this skips promoted and deleted posts
             upvotes = re.findall('<div class="score"><span class="number">(.*?)</span>', sourceCode)[0]
             upvote_percent = re.findall('span>&#32;\((.*?)% upvoted', sourceCode)[0]
             if url_str in rising_urls:
@@ -166,17 +181,16 @@ def check_iterator():
                 hours_old = 0
             elif 'day' in post_age:
                 hours_old = 24
+                #for simplicity we'll stop tracking posts after they've been up a full day
+                c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
+                conn.commit()
             elif 'hour ago' in post_age:
                 hours_old = 1
             else:
                 hours_old = int(post_age.replace(' hours ago',''))
-            
-            if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode) or (hours_old>=24):
-                #No need to keep tracking deleted posts,
-                #and for simplicity we'll stop tracking posts after they've been up a full day
-                c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = "+url_str)
-                conn.commit()
-            
+           
+
+           
             c.execute("SELECT * FROM post_stats WHERE (comment_url='"+url_str+"' and hour="+str(hours_old)+")")
             if len(c.fetchall()) == 0: #Only add a new entry if that hour hasn't yet been recorded for the post in question
                 print('Updating post data in db for '+url_str)
@@ -218,7 +232,6 @@ def check_iterator():
     print( 'new_posts now has '+str(len(pd.DataFrame(c.fetchall(), columns = [x[0] for x in c.description])))+' entries.' )
     c.execute("SELECT * FROM post_stats")
     print( 'post_stats now has '+str(len(pd.DataFrame(c.fetchall(), columns = [x[0] for x in c.description])))+' entries.' )
-    print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
 
 
 
@@ -227,10 +240,10 @@ def check_iterator():
 while True:
     try:
         check_iterator()
+        print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
     except:
         print('There was an issue with that check iteration. Will try again in '+str(check_timer)+' minutes.')
     time.sleep(check_timer*60)
-
 
 
 
