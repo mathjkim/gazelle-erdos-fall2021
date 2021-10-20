@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import sqlite3
 import pandas as pd
 import time
@@ -204,8 +201,8 @@ def check_iterator():
                 rising_val = rising_urls.index(url_str)
             else:
                 rising_val = 99
-            if comment_url in hot_urls:
-                hot_val = hot_urls.index(comment_url)
+            if url_str in hot_urls:
+                hot_val = hot_urls.index(url_str)
             else:
                 hot_val = 999
             if '<span class="title">no comments (yet)</span>' in sourceCode:
@@ -276,10 +273,8 @@ while True:
             check_iterator()
             print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
             CheckSucceed = True
-        except:
+        except Exception as e:
             print('There was an issue with that check iteration. Will try again in 3 minutes.')
+            print( 'Specific error: '+e )
             time.sleep(180)
     time.sleep(check_timer*60)
-
-
-
