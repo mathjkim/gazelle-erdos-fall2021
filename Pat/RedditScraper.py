@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import sqlite3
 import pandas as pd
 import time
@@ -5,7 +8,7 @@ import time
 from urllib.request import Request,urlopen
 import re
 
-header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
+header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) ' 
           'AppleWebKit/537.11 (KHTML, like Gecko) '
           'Chrome/23.0.1271.64 Safari/537.11',
           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -16,12 +19,12 @@ header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 
 check_timer = 20 #minutes
 
-
 # create a connection to the WSB database file
 conn = sqlite3.connect("reddit_wallstreetbets.db")
 
 # create our cursor (this allows us to execute SQL code chunks written as python strings)
 c = conn.cursor()
+
 
 c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='new_posts'")
 if len(c.fetchall()) == 0:
@@ -36,6 +39,7 @@ if len(c.fetchall()) == 0:
                         flair text,
                         submit_time text,
                         rising_val int,
+                        hot_val int,
                         username text,
                         post_karma int,
                         comment_karma int,
@@ -48,6 +52,7 @@ if len(c.fetchall()) == 0:
     # commit this new table to the database
     conn.commit()
 
+
 c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='post_stats'")
 if len(c.fetchall()) == 0:
     #Using this if statement to make sure this only runs if the table doesn't exist already
@@ -58,6 +63,7 @@ if len(c.fetchall()) == 0:
                         comment_url text,
                         hour int,
                         rising_val int,
+                        hot_val int,
                         upvotes int,
                         upvote_percent int,
                         num_comments int,
@@ -74,16 +80,38 @@ def check_iterator():
     newpage_urls = re.findall('<li class="first"><a href="(.*?)" data-event-action="comments"', newpage_sourceCode)
     post_times = re.findall('class="live-timestamp">(.*?)</time>', newpage_sourceCode)
 
+
     #Get the rising page, since we'll need it later as well
     rising_req = Request(url='https://old.reddit.com/r/wallstreetbets/rising/',headers=header)
     rising_sourceCode = urlopen(rising_req).read().decode()
     rising_urls = re.findall('<li class="first"><a href="(.*?)" data-event-action="comments"', rising_sourceCode)
 
+
+    #Scrape the first 4 hot pages (so the current top 100 posts + stickied posts)
+    hot1_req = Request(url='https://old.reddit.com/r/wallstreetbets/',headers=header)
+    hot1_sourceCode = urlopen(hot1_req).read().decode()
+
+    hot2_url = re.findall('<span class="next-button"><a href="(.*?)"', hot1_sourceCode)[0]
+    hot2_req = Request(url=hot2_url,headers=header)
+    hot2_sourceCode = urlopen(hot2_req).read().decode()
+
+    hot3_url = re.findall('<span class="next-button"><a href="(.*?)"', hot2_sourceCode)[0]
+    hot3_req = Request(url=hot3_url,headers=header)
+    hot3_sourceCode = urlopen(hot3_req).read().decode()
+
+    hot4_url = re.findall('<span class="next-button"><a href="(.*?)"', hot3_sourceCode)[0]
+    hot4_req = Request(url=hot4_url,headers=header)
+    hot4_sourceCode = urlopen(hot4_req).read().decode()
+
+    hot_urls = re.findall('<li class="first"><a href="(.*?)" data-event-action="comments"',
+               hot1_sourceCode+hot2_sourceCode+hot3_sourceCode+hot4_sourceCode)
+
+
     def new_post_entry(url_str):
         req = Request(url=url_str,headers=header)
         sourceCode = urlopen(req).read().decode()
         time.sleep(1)
-       
+
         deleted_post = False
         if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode):
             deleted_post = True
@@ -107,10 +135,14 @@ def check_iterator():
                 flair = 'None'
             submit_time = re.findall('<span>this post was submitted on &#32;</span><time datetime=(.*?)">',sourceCode)[0].replace('+00:00','')
             if comment_url in rising_urls:
-                rising_val = rising_urls.index(comment_url)+1
+                rising_val = rising_urls.index(comment_url)
             else:
                 rising_val = 99
-           
+            if comment_url in hot_urls:
+                hot_val = hot_urls.index(comment_url)
+            else:
+                hot_val = 999
+
             if 'Posted in r/wallstreetbets' in sourceCode:
                 username = re.findall('property="og:description" content="Posted in r/wallstreetbets by u/(.*?) ',sourceCode)[0]
             else:
@@ -132,18 +164,17 @@ def check_iterator():
             else:
                 num_comments = re.findall('class="bylink comments may-blank" rel="nofollow" >(.*?) comment', sourceCode)[0]
 
-
             val_str = str(post_id)+",'"+active_track+"','"+title+"','"+comment_url+"','"
-            val_str+= link_url+"','"+flair+"','"+submit_time+"',"+str(rising_val)+",'"+username+"',"
+            val_str+= link_url+"','"+flair+"','"+submit_time+"',"+str(rising_val)+","+str(hot_val)+",'"+username+"',"
             val_str+= str(post_karma).replace(",","")+","+str(comment_karma).replace(",","")+","+str(redditor_for)+","
             val_str+= str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
             #print(val_str)
             c.execute("INSERT INTO new_posts VALUES ("+val_str+")")
             conn.commit()
-           
+
             hours_old = 0
             val_str = str(stat_id)+","+str(post_id)+",'"+url_str+"',"+str(hours_old)+","
-            val_str+= str(rising_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
+            val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
             #print(val_str)
             c.execute("INSERT INTO post_stats VALUES ("+val_str+")")
             conn.commit()
@@ -155,7 +186,7 @@ def check_iterator():
         req = Request(url=url_str,headers=header)
         sourceCode = urlopen(req).read().decode()
         time.sleep(1)
-       
+
         deleted_post = False
         if ('<em>[removed]</em>' in sourceCode) or ('<span>[deleted]</span>' in sourceCode):
             deleted_post = True
@@ -169,9 +200,13 @@ def check_iterator():
             upvotes = re.findall('<div class="score"><span class="number">(.*?)</span>', sourceCode)[0]
             upvote_percent = re.findall('span>&#32;\((.*?)% upvoted', sourceCode)[0]
             if url_str in rising_urls:
-                rising_val = rising_urls.index(url_str)+1
+                rising_val = rising_urls.index(url_str)
             else:
                 rising_val = 99
+            if comment_url in hot_urls:
+                hot_val = hot_urls.index(comment_url)
+            else:
+                hot_val = 999
             if '<span class="title">no comments (yet)</span>' in sourceCode:
                 num_comments = 0
             else:
@@ -188,17 +223,16 @@ def check_iterator():
                 hours_old = 1
             else:
                 hours_old = int(post_age.replace(' hours ago',''))
-           
-
-           
+            
             c.execute("SELECT * FROM post_stats WHERE (comment_url='"+url_str+"' and hour="+str(hours_old)+")")
             if len(c.fetchall()) == 0: #Only add a new entry if that hour hasn't yet been recorded for the post in question
                 print('Updating post data in db for '+url_str)
                 val_str = str(stat_id)+","+str(post_id)+",'"+url_str+"',"+str(hours_old)+","
-                val_str+= str(rising_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
+                val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
                 #print(val_str)
                 c.execute("INSERT INTO post_stats VALUES ("+val_str+")")
                 conn.commit()
+
 
     # Pull database info into a pair of lists
     c.execute("SELECT comment_url FROM new_posts")
@@ -234,15 +268,16 @@ def check_iterator():
     print( 'post_stats now has '+str(len(pd.DataFrame(c.fetchall(), columns = [x[0] for x in c.description])))+' entries.' )
 
 
-
-
-
 while True:
-    try:
-        check_iterator()
-        print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
-    except:
-        print('There was an issue with that check iteration. Will try again in '+str(check_timer)+' minutes.')
+    CheckSucceed = False
+    while CheckSucceed == False:
+        try:
+            check_iterator()
+            print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
+            CheckSucceed = True
+        except:
+            print('There was an issue with that check iteration. Will try again in 3 minutes.')
+            time.sleep(180)
     time.sleep(check_timer*60)
 
 
