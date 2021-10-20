@@ -17,7 +17,7 @@ header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
 check_timer = 20 #minutes
 
 # create a connection to the WSB database file
-conn = sqlite3.connect("reddit_wallstreetbets.db")
+conn = sqlite3.connect("reddit_pennystocks.db")
 
 # create our cursor (this allows us to execute SQL code chunks written as python strings)
 c = conn.cursor()
@@ -72,20 +72,20 @@ if len(c.fetchall()) == 0:
 
 def check_iterator():
     # Scrape the newest posts to see if they need to be added
-    newpage_req = Request(url='https://old.reddit.com/r/wallstreetbets/new/',headers=header)
+    newpage_req = Request(url='https://old.reddit.com/r/pennystocks/new/',headers=header)
     newpage_sourceCode = urlopen(newpage_req).read().decode()
     newpage_urls = re.findall('<li class="first"><a href="(.*?)" data-event-action="comments"', newpage_sourceCode)
     post_times = re.findall('class="live-timestamp">(.*?)</time>', newpage_sourceCode)
 
 
     #Get the rising page, since we'll need it later as well
-    rising_req = Request(url='https://old.reddit.com/r/wallstreetbets/rising/',headers=header)
+    rising_req = Request(url='https://old.reddit.com/r/pennystocks/rising/',headers=header)
     rising_sourceCode = urlopen(rising_req).read().decode()
     rising_urls = re.findall('<li class="first"><a href="(.*?)" data-event-action="comments"', rising_sourceCode)
 
 
     #Scrape the first 4 hot pages (so the current top 100 posts + stickied posts)
-    hot1_req = Request(url='https://old.reddit.com/r/wallstreetbets/',headers=header)
+    hot1_req = Request(url='https://old.reddit.com/r/pennystocks/',headers=header)
     hot1_sourceCode = urlopen(hot1_req).read().decode()
 
     hot2_url = re.findall('<span class="next-button"><a href="(.*?)"', hot1_sourceCode)[0]
@@ -122,13 +122,13 @@ def check_iterator():
             active_track = 'Yes'
             title = re.findall('property="og:title" content="(.*?)">',sourceCode)[0].replace("'","")
             comment_url = url_str
-            if 'self.wallstreetbets' in sourceCode:
+            if 'self.pennystocks' in sourceCode:
                 link_url = comment_url
                 # ^this deals with self-posts
             else:
                 link_url = re.findall('"target_url": "(.*?)",',sourceCode)[0]
             if 'linkflairlabel' in sourceCode:
-                flair = re.findall('<span class="linkflairlabel " title="(.*?)">',sourceCode)[0]
+                flair = re.findall('linkflairlabel " title="(.*?):" style=',sourceCode)[0].split(': ')[1].split(' :')[0]
             else:
                 flair = 'None'
             submit_time = re.findall('<span>this post was submitted on &#32;</span><time datetime=(.*?)">',sourceCode)[0].replace('+00:00','')
@@ -141,8 +141,8 @@ def check_iterator():
             else:
                 hot_val = 999
 
-            if 'Posted in r/wallstreetbets' in sourceCode:
-                username = re.findall('property="og:description" content="Posted in r/wallstreetbets by u/(.*?) ',sourceCode)[0]
+            if 'Posted in r/pennystocks' in sourceCode:
+                username = re.findall('property="og:description" content="Posted in r/pennystocks by u/(.*?) ',sourceCode)[0]
             else:
                 username = re.findall('<a href="https://old.reddit.com/user/(.*?)" class',sourceCode)[0]
                 # ^this deals with self-posts
