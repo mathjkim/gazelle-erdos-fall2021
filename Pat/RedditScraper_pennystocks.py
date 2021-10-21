@@ -128,7 +128,7 @@ def check_iterator():
             else:
                 link_url = re.findall('"target_url": "(.*?)",',sourceCode)[0]
             if 'linkflairlabel' in sourceCode:
-                flair = re.findall('linkflairlabel " title="(.*?):" style=',sourceCode)[0].split(': ')[1].split(' :')[0]
+                flair = re.findall('linkflairlabel " title="(.*?):" style=',sourceCode)[0].replace(':','')
             else:
                 flair = 'None'
             submit_time = re.findall('<span>this post was submitted on &#32;</span><time datetime=(.*?)">',sourceCode)[0].replace('+00:00','')
@@ -215,6 +215,7 @@ def check_iterator():
             elif 'day' in post_age:
                 hours_old = 24
                 #for simplicity we'll stop tracking posts after they've been up a full day
+                print("Stopping updates for "+url_str+" since it was posted over a day ago.")
                 c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
                 conn.commit()
             elif 'hour ago' in post_age:

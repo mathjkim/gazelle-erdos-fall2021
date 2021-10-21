@@ -215,6 +215,7 @@ def check_iterator():
             elif 'day' in post_age:
                 hours_old = 24
                 #for simplicity we'll stop tracking posts after they've been up a full day
+                print("Stopping updates for "+url_str+" since it was posted over a day ago.")
                 c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
                 conn.commit()
             elif 'hour ago' in post_age:
