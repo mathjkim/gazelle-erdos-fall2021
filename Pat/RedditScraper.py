@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 import sqlite3
 import pandas as pd
 import time
@@ -5,6 +8,7 @@ import time
 from urllib.request import Request,urlopen
 import re
 
+#Necessary to avoid hangups later with some of the URL reads
 header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) ' 
           'AppleWebKit/537.11 (KHTML, like Gecko) '
           'Chrome/23.0.1271.64 Safari/537.11',
@@ -14,12 +18,11 @@ header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) '
           'Accept-Language': 'en-US,en;q=0.8',
           'Connection': 'keep-alive'}
 
+#How often to re-run the subreddit check sequence
 check_timer = 20 #minutes
 
-# create a connection to the WSB database file
+#connect to the WSB database file and create an associated cursor
 conn = sqlite3.connect("reddit_wallstreetbets.db")
-
-# create our cursor (this allows us to execute SQL code chunks written as python strings)
 c = conn.cursor()
 
 
@@ -46,7 +49,7 @@ if len(c.fetchall()) == 0:
                         num_comments int,
                         PRIMARY KEY (post_id)
                     )""")
-    # commit this new table to the database
+    #commit this table to the database
     conn.commit()
 
 
@@ -66,7 +69,7 @@ if len(c.fetchall()) == 0:
                         num_comments int,
                         PRIMARY KEY (stat_id)
                     )""")
-    # commit this new table to the database
+    #commit this table to the database
     conn.commit()
 
 
@@ -105,6 +108,8 @@ def check_iterator():
 
 
     def new_post_entry(url_str):
+        #This runs for each post being newly recorded
+        
         req = Request(url=url_str,headers=header)
         sourceCode = urlopen(req).read().decode()
         time.sleep(1)
@@ -165,20 +170,22 @@ def check_iterator():
             val_str = str(post_id)+",'"+active_track+"','"+title+"','"+comment_url+"','"
             val_str+= link_url+"','"+flair+"','"+submit_time+"',"+str(rising_val)+","+str(hot_val)+",'"+username+"',"
             val_str+= str(post_karma).replace(",","")+","+str(comment_karma).replace(",","")+","+str(redditor_for)+","
-            val_str+= str(upvotes).replace(',','')+","+str(upvote_percent)+","+str(num_comments)
+            val_str+= str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
             #print(val_str)
             c.execute("INSERT INTO new_posts VALUES ("+val_str+")")
             conn.commit()
 
             hours_old = 0
             val_str = str(stat_id)+","+str(post_id)+",'"+url_str+"',"+str(hours_old)+","
-            val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes).replace(',','')+","+str(upvote_percent)+","+str(num_comments)
+            val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
             #print(val_str)
             c.execute("INSERT INTO post_stats VALUES ("+val_str+")")
             conn.commit()
 
 
     def old_post_monitor(url_str):
+        #This runs when checking for updates to a previously recorded post
+        
         c.execute("SELECT post_id FROM new_posts WHERE comment_url='"+url_str+"'")
         post_id = list(c.fetchall())[0][0]
         req = Request(url=url_str,headers=header)
@@ -201,8 +208,8 @@ def check_iterator():
                 rising_val = rising_urls.index(url_str)
             else:
                 rising_val = 99
-            if url_str in hot_urls:
-                hot_val = hot_urls.index(url_str)
+            if comment_url in hot_urls:
+                hot_val = hot_urls.index(comment_url)
             else:
                 hot_val = 999
             if '<span class="title">no comments (yet)</span>' in sourceCode:
@@ -215,7 +222,6 @@ def check_iterator():
             elif 'day' in post_age:
                 hours_old = 24
                 #for simplicity we'll stop tracking posts after they've been up a full day
-                print("Stopping updates for "+url_str+" since it was posted over a day ago.")
                 c.execute("UPDATE new_posts SET active_track = 'No' where comment_url = '"+url_str+"'")
                 conn.commit()
             elif 'hour ago' in post_age:
@@ -227,7 +233,7 @@ def check_iterator():
             if len(c.fetchall()) == 0: #Only add a new entry if that hour hasn't yet been recorded for the post in question
                 print('Updating post data in db for '+url_str)
                 val_str = str(stat_id)+","+str(post_id)+",'"+url_str+"',"+str(hours_old)+","
-                val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes).replace(',','')+","+str(upvote_percent)+","+str(num_comments)
+                val_str+= str(rising_val)+","+str(hot_val)+","+str(upvotes)+","+str(upvote_percent)+","+str(num_comments)
                 #print(val_str)
                 c.execute("INSERT INTO post_stats VALUES ("+val_str+")")
                 conn.commit()
@@ -266,7 +272,7 @@ def check_iterator():
     c.execute("SELECT * FROM post_stats")
     print( 'post_stats now has '+str(len(pd.DataFrame(c.fetchall(), columns = [x[0] for x in c.description])))+' entries.' )
 
-
+#This will run indefinitely, running the post checking sequence every check_timer minutes
 while True:
     CheckSucceed = False
     while CheckSucceed == False:
@@ -274,8 +280,10 @@ while True:
             check_iterator()
             print('Check iteration complete. Will run another in '+str(check_timer)+' minutes.')
             CheckSucceed = True
-        except Exception as e:
+        except:
             print('There was an issue with that check iteration. Will try again in 3 minutes.')
-            print( 'Specific error: '+str(e) )
             time.sleep(180)
     time.sleep(check_timer*60)
+
+
+
