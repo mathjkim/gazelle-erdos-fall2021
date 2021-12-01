@@ -7,7 +7,7 @@ Attempting to predict the potential popularity of a post made to the financial s
 
 
 
-The Finalclassification takes df_24 dataframe as input data. df_24 has the initial features: ['post_id', 'active_track', 'title', 'comment_url',
+Finalclassification.ipynb takes df_24 dataframe as input data. df_24 has the initial features: ['post_id', 'active_track', 'title', 'comment_url',
 'link_url', 'flair', 'submit_time', 'rising_val', 'hot_val', 'username','post_karma', 'comment_karma', 'redditor_for', 'upvotes',
 'upvote_percent', 'num_comments'] and the value of 'upvotes','hot_val'... after 24 hours.
 
