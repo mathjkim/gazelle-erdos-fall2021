@@ -86,3 +86,7 @@ The models performing best are: SVC, DecisionTree, LogisticRegression, KNN and v
 The final cross validation on these models reveals that logistic regression turns best for accuracy and Voter model for ROC.
 
 Finally the best model is tested on the test samples.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Deliverables.py is the final product for this effort. Largely a repackaged version of RedditScraper.py, this script runs a similar 20 minute cadence check for new posts on /r/wallstreetbets and provides a prediction of whether a given new post is likely to go viral on the subreddit. This is configured as-written to utilize the most accurate model found in Finalclassification.ipynb (a logistic regression classifier), but could easily be converted to use different classifiers if they were found to be more useful in subsequent analyses.
